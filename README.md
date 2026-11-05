@@ -2,7 +2,8 @@
 
 A SystemVerilog/UVM verification environment for a simple APB memory slave, with a directed sequence, reference-memory scoreboard, and functional coverage.
 
-**Author:**   Agha Malik Baig Mirza
+**Author:**   Agha Malik Baig Mirza 
+
 **Original project:** [EDA Playground](https://edaplayground.com/x/Ziek)
 
 ## Design
