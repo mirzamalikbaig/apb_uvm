@@ -1,0 +1,17 @@
+# Simulator outputs
+simv
+simv.daidir/
+simv.vdb/
+csrc/
+urgReport/
+ucli.key
+*.vcd
+*.vpd
+*.fsdb
+*.wlf
+DVEfiles/
+verdiLog/
+
+# Local operating system files
+.DS_Store
+Thumbs.db
