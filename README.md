@@ -1,6 +1,6 @@
 # APB UVM Verification
 
-A SystemVerilog/UVM verification environment for a simple APB memory slave, with a directed sequence, reference-memory scoreboard, and functional coverage.
+I built this SystemVerilog/UVM verification environment for a simple APB memory slave, with a directed sequence, reference-memory scoreboard, and functional coverage.
 
 **Author:**   Agha Malik Baig Mirza 
 
@@ -30,7 +30,7 @@ The `slave` module implements 32 words of 32-bit memory. An active-low asynchron
 | `apb_env.sv` | Connects the monitor to the scoreboard and coverage subscriber |
 | `apb_test.sv` | Prints topology and starts the sequence under a run-phase objection |
 | `run_vcs.sh` | Compile, simulate, and generate a text coverage report |
-| `results/simulation.log` | Supplied EDA Playground simulation and coverage output |
+| `results/simulation.log` | My EDA Playground simulation and coverage output |
 
 The test starts at time zero. The driver waits for reset release, then drives each transaction on falling clock edges. The monitor samples completed accesses on rising edges.
 
@@ -62,7 +62,7 @@ The recorded run reports **100.00% functional coverage** for these implemented b
 
 ## Recorded results
 
-Results below come from the user-supplied EDA Playground output. This repository preparation did not rerun VCS.
+Results are from my EDA Playground run with Synopsys VCS.
 
 | Item | Result |
 | --- | --- |
@@ -85,9 +85,9 @@ Results below come from the user-supplied EDA Playground output. This repository
 
 The top-level instance and total module-definition summaries separately report **82.61%**. These are different summary scopes from the total score of 86.09%.
 
-URG prints `Load Failed:` followed by `Warning-[UCAPI-SNF] Shape Not Found` for FSM coverage. This warning belongs to coverage post-processing, outside the zero UVM-warning count. The RTL has no explicitly declared FSM, and the supplied report contains no FSM coverage value. Condition and toggle coverage remain below 100%.
+URG prints `Load Failed:` followed by `Warning-[UCAPI-SNF] Shape Not Found` for FSM coverage. This warning belongs to coverage post-processing, outside the zero UVM-warning count. The RTL has no explicitly declared FSM, and my coverage report contains no FSM coverage value. Condition and toggle coverage remain below 100%.
 
-See [the complete supplied output](results/simulation.log). Chat formatting escapes were removed during transcription. Source formatting was normalized when splitting the pasted files, so original log line numbers may differ from this repository.
+See [my complete simulation output](results/simulation.log). I formatted the source files for readability, so the log's original line numbers may differ.
 
 ## Run with Synopsys VCS
 
@@ -99,7 +99,7 @@ From the repository directory:
 bash run_vcs.sh
 ```
 
-The script uses the supplied commands:
+I use these commands to compile, run, and generate the coverage report:
 
 ```bash
 vcs -full64 -licqueue -sverilog -ntb_opts uvm-1.2 \
@@ -118,4 +118,4 @@ Compile only `design.sv` and `testbench.sv`; the top testbench includes all rema
 
 This example checks directed write/read data behavior for an always-ready, error-free slave. It does not exercise wait states, slave-error responses, reset during traffic, or protocol assertions. The scoreboard is populated by observed writes and does not initialize or reset its reference memory; the directed reads follow writes to their addresses. It indexes the full transaction address, while the DUT uses only the lower five bits, so extending stimulus beyond addresses 0–31 requires updating the reference model. There is no independent transaction-count check or simulation timeout.
 
-All provided source files are included. VCS and URG were unavailable in the preparation environment; the supplied simulation output is retained as the execution evidence.
+I included all source files and the simulation log from my EDA Playground run.
